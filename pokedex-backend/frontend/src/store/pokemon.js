@@ -1,4 +1,6 @@
 import { LOAD_ITEMS, REMOVE_ITEM, ADD_ITEM } from './items';
+import * as PokemonAPIUtil from "../util/pokemon_api_util"
+
 
 const LOAD = 'pokemon/LOAD';
 const LOAD_TYPES = 'pokemon/LOAD_TYPES';
@@ -18,6 +20,25 @@ const addOnePokemon = pokemon => ({
   type: ADD_ONE,
   pokemon
 });
+
+export const createPokemon = (pokemonPayload) => async dispatch => {
+  const response = await PokemonAPIUtil.postPokemon(pokemonPayload);
+  console.log(response);
+  if (response.ok) {
+    const pokemon = await response.json();
+    dispatch(addOnePokemon(pokemon));
+    return pokemon;
+  }
+};
+
+export const getPokemonDetail = (id) => async dispatch => {
+  const response = await fetch(`/api/pokemon/${id}`);
+
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(addOnePokemon(list));
+  }
+};
 
 export const getPokemon = () => async dispatch => {
   const response = await fetch(`/api/pokemon`);

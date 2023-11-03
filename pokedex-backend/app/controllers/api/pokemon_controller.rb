@@ -24,6 +24,7 @@ class Api::PokemonController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
 
     @pokemon.transaction do
+      # debugger
       @pokemon.save!
       @pokemon.save_moves!(params[:moves])
       render :show
