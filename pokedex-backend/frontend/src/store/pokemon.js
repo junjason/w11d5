@@ -31,8 +31,8 @@ export const createPokemon = (pokemonPayload) => async dispatch => {
   }
 };
 
-export const editPokemon = (pokemonPayload, id) => async dispatch => {
-  const response = await PokemonAPIUtil.editPokemon(pokemonPayload, id);
+export const editPokemon = (pokemonPayload, id) => async (dispatch) => {
+  const response = await PokemonAPIUtil.putPokemon(pokemonPayload, id);
   if (response.ok) {
     const pokemon = await response.json();
     dispatch(addOnePokemon(pokemon));

@@ -9,9 +9,12 @@ export const postPokemon = data => {
     });
 };
 
-export const editPokemon = (data, id) => {
+export const putPokemon = (data, id) => {
+    debugger
+    console.log(data);
+    console.log(id);
     return fetch(`/api/pokemon/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',

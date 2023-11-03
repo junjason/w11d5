@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonTypes } from '../store/pokemon';
 import { useParams } from 'react-router-dom';
-import { editPokemon } from '../util/pokemon_api_util';
+import { editPokemon } from '../store/pokemon';
 
 const EditPokemonForm = ({ pokemon, hideForm }) => {
   const pokeTypes = useSelector(state => state.pokemon.types);
@@ -51,10 +51,9 @@ const EditPokemonForm = ({ pokemon, hideForm }) => {
     // if (updatedPokemon) {
     //   hideForm();
     // }
-    debugger;
-    dispatch(editPokemon(payload, pokemonId)) 
-    // .then(() => hideForm());
-    debugger;
+    // debugger;
+    dispatch(editPokemon(payload, pokemonId)).then(() => hideForm());
+    // debugger;
   };
 
 
