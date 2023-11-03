@@ -8,3 +8,14 @@ export const postPokemon = data => {
         }
     });
 };
+
+export const editPokemon = (data, id) => {
+    return fetch(`/api/pokemon/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    });
+};
